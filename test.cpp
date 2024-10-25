@@ -34,19 +34,16 @@ void print_map(const std::unordered_map<std::string, std::string>& map)
 
 int main()
 {
-    std::unordered_map<std::string, std::vector<std::string>> map;
-    map["code"].push_back("cpp");
-    map["code"].push_back("java");
-    map["code"].push_back("python");
+    // std::unordered_map<std::string, std::vector<std::string>> map;
+    // map["code"].push_back("cpp");
+    // map["code"].push_back("java");
+    // map["code"].push_back("python");
 
-    std::cout << map["code"].size() << std::endl;
-    // map["1"] = {"2"};
-    // map["2"] = {"1"};
-    // map["1"];
-    // std::unordered_map<std::string, std::string> map;
-    // map["program"] = "code";
-    // map["code"] = "program|";
-    // map["1"].insert(0, "2");
+    std::unordered_map<std::string, std::string> map;
+    // std::cout << map["code"].size() << std::endl;
+    map["program"] += "code,";
+    map["program"] += "ded,";
+    std::cout << map["program"] << std::endl;
     // std::cout << map["program"].append("dad") << std::endl;
     // map["program"].append(",dad");
     // map["program"].append(",dad");

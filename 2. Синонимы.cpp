@@ -1,32 +1,42 @@
 #include <unordered_map>
 #include <iostream>
 #include <string>
-#include <vector>
 
-std::unordered_map<std::string, std::vector<std::string>> map;
+std::unordered_map<std::string, std::string> map;
 
-void execute_operation(const std::string& operation, const std::string& param1, const std::string& param2)
+void execute_operation(const std::string& operation)
 {
-    if (operation.starts_with("ADD"))
+    std::string param1;
+    std::cin >> param1;
+
+    if (operation == "ADD")
     {
-        map[param1].push_back(param2);
-        map[param2].push_back(param1);
+        std::string param2;
+        std::cin >> param2;
+
+        map[param1] += param2 + ',';
+        map[param2] += param1 + ',';
     }
-    else if (operation.starts_with("COUNT"))
+    else if (operation == "COUNT")
     {
-        std::cout << map[param1].size() << std::endl;
-    }
-    else if (operation.starts_with("CHECK"))
-    {
-        for (const auto& vec_elem : map[param1])
+        size_t counter = 0;
+        size_t finder = map[param1].find(',');
+        while (finder != std::string::npos)
         {
-            if (vec_elem == param2)
-            {
-                std::cout << "YES" << std::endl;
-                return;
-            }
+            ++counter;
+            finder = map[param1].find(',', finder+1);
         }
-        std::cout << "NO" << std::endl;
+        std::cout << counter << std::endl;
+    }
+    else if (operation == "CHECK")
+    {
+        std::string param2;
+        std::cin >> param2;
+
+        if (map[param1].find(param2) != std::string::npos)
+            std::cout << "YES" << std::endl;
+        else
+            std::cout << "NO" << std::endl;
     }
 }
 
@@ -40,13 +50,6 @@ int main()
         std::string operation;
         std::cin >> operation;
 
-        std::string param1;
-        std::cin >> param1;
-
-        std::string param2;
-        if (operation != "COUNT")
-            std::cin >> param2;
-
-        execute_operation(operation, param1, param2);
+        execute_operation(operation);
     }
 }
