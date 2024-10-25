@@ -44,7 +44,6 @@ int main()
 {
     int requests_count;
     std::cin >> requests_count;
-    map.reserve(requests_count);
     for (size_t i = 0; i < requests_count; ++i)
     {
         std::string operation;
